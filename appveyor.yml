@@ -1,0 +1,30 @@
+version: '{build}'
+image: Visual Studio 2017
+
+pull_requests:
+  do_not_increment_build_number: true
+
+branches:
+  only:
+  - master
+
+nuget:
+  disable_publish_on_pr: true
+
+before_build:
+  - cmd: dotnet restore
+
+after_build:
+- dotnet pack "src\Narochno.BBCode" -c Release
+
+test_script:
+- dotnet test "test\Narochno.BBCode.Tests\Narochno.BBCode.Tests.csproj"
+
+artifacts:
+- path: src\Narochno.BBCode\bin\Release\*.nupkg
+
+deploy:
+  - provider: Environment
+    name: nuget.org
+    on:
+      branch: master
