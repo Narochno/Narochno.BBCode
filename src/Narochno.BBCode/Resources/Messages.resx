@@ -118,33 +118,33 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DuplicateAttribute" xml:space="preserve">
-    <value>The tag {0} has a duplicate attribute {1}.</value>
+    <value>{0} tag has a duplicate attribute {1}</value>
   </data>
   <data name="EscapeChar" xml:space="preserve">
-    <value>The character "\" is used to escape "]" and "[". Please escape it like this "\\".</value>
+    <value>Unrecognized escape sequence. Backslashes must be escaped as "\\"</value>
   </data>
   <data name="MissingDefaultAttribute" xml:space="preserve">
-    <value>The tag {0} cannot have a value.</value>
+    <value>{0} tags cannot have a value</value>
   </data>
   <data name="NoAttributesAllowed" xml:space="preserve">
-    <value>In the tag {0} no attributes are allowed.</value>
+    <value>Attributes are not allowed in {0} tags</value>
   </data>
   <data name="NonescapedChar" xml:space="preserve">
-    <value>The character "]" cannot be used in text or code without beeing escaped. Please write "\]" instead.</value>
+    <value>Square brackets must be escaped with a backslash (e.g. "\]")</value>
   </data>
   <data name="TagNotClosed" xml:space="preserve">
-    <value>The tag {0} was not closed correctly.</value>
+    <value>{0} tag was not closed correctly</value>
   </data>
   <data name="TagNotMatching" xml:space="preserve">
-    <value>The end-tag {0} does not match the preceding start-tag {1}.</value>
+    <value>End-tag {0} does not match the preceding start-tag {1}</value>
   </data>
   <data name="TagNotOpened" xml:space="preserve">
-    <value>The tag {0} has not been closed.</value>
+    <value>No {0} tag was opened</value>
   </data>
   <data name="UnknownAttribute" xml:space="preserve">
-    <value>The tag {0} does not have an attribute {1}.</value>
+    <value>{0} tag does not have attribute {1}</value>
   </data>
   <data name="UnknownTag" xml:space="preserve">
-    <value>The tag {0} does not exists.</value>
+    <value>{0} tag does not exist</value>
   </data>
 </root>
