@@ -14,22 +14,25 @@ namespace Narochno.BBCode
     /// </summary>
     public class BBCodeParser : IBBCodeParser
     {
-        public BBCodeParser()
-            : this(ErrorMode.ErrorFree, null, new[]
-                {
-                    new BBTag("b", "<b>", "</b>"),
-                    new BBTag("i", "<em>", "</em>"),
-                    new BBTag("u", "<u>", "</u>"),
-                    new BBTag("h1", "<h1>", "</h1>"),
-                    new BBTag("code", "<pre>", "</pre>"),
-                    new BBTag("img", "<img src=\"${content}\" />", "", false, true),
-                    new BBTag("quote", "<blockquote>", "</blockquote>"),
-                    new BBTag("list", "<ul>", "</ul>"),
-                    new BBTag("*", "<li>", "</li>", true, false),
-                    new BBTag("url", "<a href=\"${href}\">", "</a>", new BBAttribute("href", ""), new BBAttribute("href", "href")),
-                })
+        public static BBTag[] DefaultTags = new[]
         {
+            new BBTag("b", "<b>", "</b>"),
+            new BBTag("i", "<em>", "</em>"),
+            new BBTag("u", "<u>", "</u>"),
+            new BBTag("h1", "<h1>", "</h1>"),
+            new BBTag("code", "<pre>", "</pre>"),
+            new BBTag("img", "<img src=\"${content}\" />", "", false, true),
+            new BBTag("quote", "<blockquote>", "</blockquote>"),
+            new BBTag("list", "<ul>", "</ul>"),
+            new BBTag("*", "<li>", "</li>", true, false),
+            new BBTag("url", "<a href=\"${href}\">", "</a>", new BBAttribute("href", ""), new BBAttribute("href", "href")),
+            new BBTag("style", "<span style=\"color: ${color}\">", "</span>", new BBAttribute("color", "color")),
+            new BBTag("color", "<span style=\"color: ${color}\">", "</span>", new BBAttribute("color", ""))
+        };
 
+        public BBCodeParser()
+            : this(ErrorMode.ErrorFree, null, DefaultTags)
+        {
         }
 
         public BBCodeParser(IList<BBTag> tags)

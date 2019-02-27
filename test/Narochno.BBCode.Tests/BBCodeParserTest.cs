@@ -202,5 +202,17 @@ namespace Narochno.BBCode.Tests
             Assert.Equal(@"<a href=""http://codekicker.de"">http://codekicker.de</a>", parser.ToHtml(@"[url2]http://codekicker.de[/url2]"));
             Assert.Equal(@"<a href=""http://codekicker.de"">http://codekicker.de</a>", parser.ToHtml(@"[url2=http://codekicker.de]http://codekicker.de[/url2]"));
         }
+
+        [Fact]
+        public void TestColorTag()
+        {
+            Assert.Equal("text<span style=\"color: red\">red</span>text", BBEncodeForTest("text[color=red]red[/color]text", ErrorMode.Strict));
+        }
+
+        [Fact]
+        public void TestStyleTag()
+        {
+            Assert.Equal("text<span style=\"color: #DB7900\">whatever</span>text", BBEncodeForTest("text[style color=#DB7900]whatever[/style]text", ErrorMode.Strict));
+        }
     }
 }
