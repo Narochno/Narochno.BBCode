@@ -47,20 +47,24 @@ namespace Narochno.BBCode.Tests
 
         public static BBCodeParser GetParserForTest(ErrorMode errorMode, bool includePlaceholder, BBTagClosingStyle listItemBBTagClosingStyle, bool enableIterationElementBehavior)
         {
-            return new BBCodeParser(errorMode, null, new[]
-                {
-                    new BBTag("b", "<b>", "</b>"), 
-                    new BBTag("i", "<span style=\"font-style:italic;\">", "</span>"), 
-                    new BBTag("u", "<span style=\"text-decoration:underline;\">", "</span>"), 
-                    new BBTag("code", "<pre class=\"prettyprint\">", "</pre>"), 
-                    new BBTag("img", "<img src=\"${content}\" />", "", false, true), 
-                    new BBTag("quote", "<blockquote>", "</blockquote>"), 
-                    new BBTag("list", "<ul>", "</ul>"), 
-                    new BBTag("*", "<li>", "</li>", true, listItemBBTagClosingStyle, null, enableIterationElementBehavior), 
-                    new BBTag("url", "<a href=\"${href}\">", "</a>", new BBAttribute("href", ""), new BBAttribute("href", "href")), 
-                    new BBTag("url2", "<a href=\"${href}\">", "</a>", new BBAttribute("href", "", GetUrl2Href), new BBAttribute("href", "href", GetUrl2Href)), 
-                    !includePlaceholder ? null : new BBTag("placeholder", "${name}", "", false, BBTagClosingStyle.LeafElementWithoutContent, null, new BBAttribute("name", "", name => "xxx" + name.AttributeValue + "yyy")), 
-                }.Where(x => x != null).ToArray());
+            var tags = new List<BBTag>
+            {
+                new BBTag("url2", "<a href=\"${href}\">", "</a>", new BBAttribute("href", "", GetUrl2Href), new BBAttribute("href", "href", GetUrl2Href))
+            };
+
+            tags.AddRange(BBCodeParser.DefaultTags);
+
+            // Some tests need to customise the list item tag
+            var listItem = tags.Single(x => x.Name == "*");
+            tags.Remove(listItem);
+            tags.Add(new BBTag(listItem.Name, listItem.OpenTagTemplate, listItem.CloseTagTemplate, true, listItemBBTagClosingStyle, listItem.ContentTransformer, enableIterationElementBehavior));
+
+            if (includePlaceholder)
+            {
+                tags.Add(new BBTag("placeholder", "${name}", "", false, BBTagClosingStyle.LeafElementWithoutContent, null, new BBAttribute("name", "", name => "xxx" + name.AttributeValue + "yyy")));
+            }
+
+            return new BBCodeParser(errorMode, null, tags);
         }
         static string GetUrl2Href(IAttributeRenderingContext attributeRenderingContext)
         {
