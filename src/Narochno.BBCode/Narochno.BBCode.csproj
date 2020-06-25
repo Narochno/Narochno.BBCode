@@ -12,7 +12,15 @@
     <PackageIconUrl>https://avatars.githubusercontent.com/u/24652538</PackageIconUrl>
     <PackageProjectUrl>https://github.com/Narochno/Narochno.BBCode</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/Narochno/Narochno.BBCode/blob/master/LICENSE</PackageLicenseUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.WebUtilities" Version="2.0.2" />
